@@ -38,7 +38,7 @@ module.exports = {
     };
 
     if (!options.Play) {
-      if (!Db["Always"]) {
+      if (!Db.Always) {
       await Db.VoiceChannel.leave();
       };
       await client.queue.delete();
