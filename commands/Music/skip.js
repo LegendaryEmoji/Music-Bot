@@ -20,7 +20,7 @@ module.exports = {
     
     if (!Queue.Playing) Queue.Playing = true;
     
-    Queue.Bot.dispatcher.end();
+    await Queue.Bot.dispatcher.end();
     
     const Embed = new Discord.MessageEmbed()
     .setColor(Color)

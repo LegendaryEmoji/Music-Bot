@@ -19,7 +19,7 @@ module.exports = {
       return `https://youtube.com/watch?v=${Type}`;
     }
   },
-  async Player(message, Discord, client, Ytdl, options = {}) {
+  async Player(message, Discord, client, Ytdl, options = {}, db) {
     const Filters = {
       bassboost: "bass=g=20,dynaudnorm=f=200",
       vaporwave: "aresample=48000,asetrate=48000*0.8",
@@ -32,12 +32,15 @@ module.exports = {
     const Db = await client.queue.get(message.guild.id);
     let Seek;
     if (options.Filter) {
-      Seek = Db.ExtraTime ? Db.Bot.dispatcher.streamTime + Db.ExtraTime : Db.Bot.dispatcher.streamTime;
+      Seek = Db.ExtraTime
+        ? Db.Bot.dispatcher.streamTime + Db.ExtraTime
+        : Db.Bot.dispatcher.streamTime;
     } else {
       Seek = undefined;
     };
 
     if (!options.Play) {
+      await Db.VoiceChannel.leave() && await client.queue.delete(message.guild.id);
       if (!Db.Always) {
       await Db.VoiceChannel.leave();
       };
@@ -56,7 +59,7 @@ module.exports = {
             "Server Queue Has Been Ended, Thanks For Listening To Me <3\n\nPro Tip: You Can Use **24.7** Command To Make It 24/7 :D"
           )
         );
-    }
+    };
 
     Db.Bot.on("disconnect", async () => {
       await client.queue.delete(message.guild.id);
@@ -66,14 +69,14 @@ module.exports = {
     Object.keys(Db.Filters).forEach(FilterName => {
       if (Db.Filters[FilterName]) {
         EcoderFilters.push(Filters[FilterName]);
-      }
+      };
     });
     let Encoder;
     if (EcoderFilters.length < 1) {
       Encoder = [];
     } else {
       Encoder = ["-af", EcoderFilters.join(",")];
-    }
+    };
 
     const Steam = Ytdl(Db.Songs[0].Link, {
       filter: "audioonly",
@@ -111,17 +114,17 @@ module.exports = {
 
       await Dispatcher.setVolumeLogarithmic(Db.Volume / 100);
 
-      Db.Bot.dispatcher
+      await Db.Bot.dispatcher
         .on("finish", async () => {
           const Shift = await Db.Songs.shift();
           if (Db.Loop === true) {
             await Db.Songs.push(Shift);
-          } else {
-            await module.exports.Player(message, Discord, client, Ytdl, {
-              Play: Db.Songs[0],
-              Color: require("./config.js").Color
-            });
           }
+
+          await module.exports.Player(message, Discord, client, Ytdl, {
+            Play: Db.Songs[0],
+            Color: require("./config.js").Color
+          });
         })
         .on("error", async error => {
           await console.log(error);
@@ -172,7 +175,7 @@ module.exports = {
       } else {
         return Count;
       }
-    }
+    };
     return {
       ID: Song.videoId,
       Title: Song.title,

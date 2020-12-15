@@ -89,6 +89,7 @@ module.exports = {
     } else if (YtPlUrl.test(args[0])) {
       try {
         const Splitter = await args[0].split("list=")[1];
+        console.log(Splitter);
         const Info = await syt.getPlaylist(
           Splitter.endsWith("/") ? Splitter.slice(0, -1) : Splitter
         );
@@ -117,19 +118,18 @@ module.exports = {
       }
     } else {
       try {
-        const Info = await Sr.searchOne(args.join(" "));
-        const YtInfo = await Ytdl.getInfo(
-          `https://www.youtube.com/watch?v=${Info.id}`
-        );
-        SongInfo = YtInfo.videoDetails;
-        Song = await Objector(SongInfo, message);
+        await Sr.searchOne(args.join(" ")).then(async Info => {
+           const YtInfo = await Ytdl.getInfo(`https://www.youtube.com/watch?v=${Info.id}`);
+          SongInfo = YtInfo.videoDetails;
+          Song = await Objector(SongInfo, message);
+        });
       } catch (error) {
         console.log(error);
         return message.channel.send(
           "Error: Something Went Wrong Or No Video Found (Query)"
         );
-      }
-    }
+      };
+    };
 
     let Joined;
     try {
@@ -137,7 +137,7 @@ module.exports = {
     } catch (error) {
       console.log(error);
       return message.channel.send("Error: I Can't Join The Voice Channel!");
-    }
+    };
 
     if (ServerQueue) {
       if (Playlist && Playlist.Yes) {
@@ -206,7 +206,7 @@ module.exports = {
     };
 
     try {
-      await Player(message, Discord, client, Ytdl, { Play: Database.Songs[0], Color: Color, db: db } );
+      await Player(message, Discord, client, Ytdl, { Play: Database.Songs[0], Color: Color }, db);
     } catch (error) {
       console.log(error);
       await client.queue.delete(message.guild.id);
