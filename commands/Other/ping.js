@@ -9,6 +9,6 @@ module.exports = {
   description: "Show Bot Ping!",
   usage: "Ping",
   run: async (client, message, args) => {
-     return message.channel.send(`Pong - ${Math.round(client.ws.ping)}`)
+    return message.channel.send(`Pong - ${Math.round(client.ws.ping)}`);
   }
 };

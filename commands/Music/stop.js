@@ -20,7 +20,6 @@ module.exports = {
        
     Queue.Songs = [];
     await Queue.Bot.dispatcher.end();
-    await message.guild.me.voice.leave();
     
     const Embed = new Discord.MessageEmbed()
     .setColor(Color)
