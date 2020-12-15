@@ -41,6 +41,10 @@ module.exports = {
 
     if (!options.Play) {
       await Db.VoiceChannel.leave() && await client.queue.delete(message.guild.id);
+      if (!Db.Always) {
+      await Db.VoiceChannel.leave();
+      };
+      await client.queue.delete();
       const Embeded = new Discord.MessageEmbed()
         .setColor(options.Color)
         .setTitle("Queue Ended!")
