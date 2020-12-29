@@ -18,11 +18,19 @@ module.exports = {
       return message.channel.send(
         "Nothing Is Playing Right Now, Add Some Songs To Queue :D"
       );
+    
+    let Song, Seconds, Time, Total;
+    
+    try {
 
-    const Song = await Queue.Songs[0],
+    Song = await Queue.Songs[0],
       Total = Song.Duration,
       Seconds = Song.Seconds,
       Time = parseInt(Queue.Bot.dispatcher.streamTime + Queue.ExtraTime);
+      
+    } catch (error) {
+      return message.channel.send("Nothing Is Playing Right Now, Add Some Songs To Queue :D");
+    };
 
     function FD(duration) {
       let minutes = Math.floor(duration / 60);

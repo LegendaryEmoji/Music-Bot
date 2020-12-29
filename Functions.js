@@ -41,22 +41,18 @@ module.exports = {
 
     if (!options.Play) {
       await Db.VoiceChannel.leave() && await client.queue.delete(message.guild.id);
-      if (!Db.Always) {
-      await Db.VoiceChannel.leave();
-      };
-      await client.queue.delete();
       const Embeded = new Discord.MessageEmbed()
         .setColor(options.Color)
         .setTitle("Queue Ended!")
         .setDescription(
-          "Server Queue Has Been Ended, Thanks For Listening To Me <3\n\nPro Tip: You Can Use **24.7** Command To Make It 24/7 :D"
+          "Server Queue Has Been Ended, Thanks For Listening To Me <3"
         )
         .setTimestamp();
       return message.channel
         .send(Embeded)
         .catch(() =>
           message.channel.send(
-            "Server Queue Has Been Ended, Thanks For Listening To Me <3\n\nPro Tip: You Can Use **24.7** Command To Make It 24/7 :D"
+            "Server Queue Has Been Ended, Thanks For Listening To Me <3"
           )
         );
     };
@@ -97,7 +93,7 @@ module.exports = {
       });
 
       if (Seek) {
-        Db.ExtraTime = Seek;
+      Db.ExtraTime = Seek;
       } else {
         const PlayEmbed = new Discord.MessageEmbed()
           .setColor(options.Color)
@@ -119,8 +115,7 @@ module.exports = {
           const Shift = await Db.Songs.shift();
           if (Db.Loop === true) {
             await Db.Songs.push(Shift);
-          }
-
+          };
           await module.exports.Player(message, Discord, client, Ytdl, {
             Play: Db.Songs[0],
             Color: require("./config.js").Color

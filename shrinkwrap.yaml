@@ -8,8 +8,9 @@ dependencies:
   lyrics-finder: 21.4.0
   scrape-yt: 1.4.7
   wio.db: 4.0.9
-  youtube-sr: 2.0.4
-  ytdl-core: 4.1.5
+  youtube-sr: 2.0.5
+  ytdl-core: 4.1.6
+  ytpl: 2.0.3
 packages:
   /@derhuerst/http-basic/8.2.1:
     dependencies:
@@ -579,10 +580,6 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
-  /html-entities/1.3.3:
-    dev: false
-    resolution:
-      integrity: sha512-/VulV3SYni1taM7a4RMdceqzJWR39gpZHjBwUnsCFKWV/GJkD14CJ5F7eWcZozmHJK0/f/H5U3b3SiPkuvxMgg==
   /html-to-text/5.1.1:
     dependencies:
       he: 1.2.0
@@ -1315,15 +1312,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==
-  /youtube-sr/2.0.4:
+  /youtube-sr/2.0.5:
     dependencies:
       node-fetch: 2.6.1
     dev: false
     resolution:
-      integrity: sha512-ESSPvmdTDRyqm4RrWZu4mzPqL/Uf2byBvrupy6XKPpLBKxK3dqYKX0lx3GZ/7OUXAbcKkHckC9wYU/fPGGDXSw==
-  /ytdl-core/4.1.5:
+      integrity: sha512-46aBX3ZCPa9zgZz1HsoeyZnFbBSUmwPYjxZuwcKRGDPCzaj9StBa6UUSnPAr39NTqULbeHGAkMpMRInL4x2+Rg==
+  /ytdl-core/4.1.6:
     dependencies:
-      html-entities: 1.3.3
       m3u8stream: 0.8.3
       miniget: 4.1.0
       sax: 1.2.4
@@ -1331,7 +1327,15 @@ packages:
     engines:
       node: '>=10'
     resolution:
-      integrity: sha512-3MSGIFg3jBWuYZthumSZh69pLwC8/0Wz4Ov+Q6StsGsGcbwBN0OGtz3XvtlYS5YWLrxLeIs/FRBMXrgeEOSA+w==
+      integrity: sha512-byQCynwQeqzn0VkzASFWs41sxnGSHgAXC4Dm6r7woK3e/WNtTr0sfOIgLkRKXaTw3ez5Pq5VhGwFQtbY6YbxRA==
+  /ytpl/2.0.3:
+    dependencies:
+      miniget: 4.1.0
+    dev: false
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-E5nH0gULzpXAh7rcj6X7I8MK0L8hiprzZzsxTc/OPZDcYF53Z7O5IbU1vgMYzEmVsPtTLEWejT2HUWdjlgaCSQ==
 registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
@@ -1345,5 +1349,6 @@ specifiers:
   lyrics-finder: ^21.4.0
   scrape-yt: ^1.4.7
   wio.db: ^4.0.9
-  youtube-sr: ^2.0.4
-  ytdl-core: ^4.1.3
+  youtube-sr: ^2.0.5
+  ytdl-core: ^4.1.5
+  ytpl: ^2.0.3
