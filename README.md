@@ -37,4 +37,4 @@ Note: Please Make Sure You Know Basics & Also Credit Me Or I Will Report You :)
 
 - Author - Legendary Emoji#1742
 - Support - [Click Me](https://discord.gg/umMpnqS)
-- License - [Mit](https://github.com/LegendaryEmoji/simple-chat-bot/blob/main/LICENSE)
+- License - [Mit](https://github.com/LegendaryEmoji/Music-Bot/blob/main/LICENSE)
