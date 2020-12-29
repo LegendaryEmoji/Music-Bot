@@ -28,7 +28,7 @@ module.exports = {
     
     Queue.Filters["bassboost"] = Queue.Filters["bassboost"] ? false : true;
     
-    await Player(message, Discord, client, Ytdl, { Filter: true, Play: Queue.Songs[0], Color: Color }, db);
+    await Player(message, Discord, client, Ytdl, { Filter: true, Play: Queue.Songs[0], Color: Color, db: db });
 
     return message.channel.send(Embed).catch(() => message.channel.send(`🎶 Nightcore Has Been ${Queue.Filters["bassboost"] ? "Disabled" : "Enabled"}`));
     

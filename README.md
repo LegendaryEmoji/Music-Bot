@@ -8,12 +8,12 @@ A Advanced Music Bot With Filters & Other Cool Stuff ;)
 ### Setup
 
 - Download / Export This Repository & Make Sure To Install [Node.js](https://nodejs.org/en/) & [Visual Studio Code (Only If You Don't Have Any Code Editor)](https://code.visualstudio.com/)
-- Open Project In Visual Studio Code (Editor) & To Open Console / Terminal - **Ctrl + A**
-- In Your Project Terminal / Console Type This - **npm i**
+- Open Project In Visual Studio Code (Editor) & (Visual Studio Code) To Open Console / Terminal - **Ctrl + A**
+- In Your Project Console / Terminal Type This - **npm i**
 - And Wait For Them (Packages) To Install...
 - After Installing Done, Go To Config.js And
-- Fill Information & After That Type This In Your Terminal / Console - **_node ._** Or **_node server.js_**
-- When Bot Is Ready, You Will See A Message In Console
+- Fill Information & After That Type This In Your Console / Terminal - **_node ._** Or **_node server.js_**
+- When Bot Is Ready, You Will See A Message In Console / Terminal
 - Enjoy <3
 
 ### Credits
@@ -33,7 +33,7 @@ By Donating, You Will Help Me To Maintain This Bot!
 
 ### Other
 
-Note: I Will Get Your Ass If You Ever Say **This Is My Bot & Coded By Me Or Smth**, Make Sure To Give Credit (In Bot Or Commands) :D
+Note: Please Make Sure You Know Basics & Also Credit Me Or I Will Report You :)
 
 - Author - Legendary Emoji#1742
 - Support - [Click Me](https://discord.gg/umMpnqS)

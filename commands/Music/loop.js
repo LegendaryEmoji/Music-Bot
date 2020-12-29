@@ -19,35 +19,13 @@ module.exports = {
     
     const Embed = new Discord.MessageEmbed()
     .setColor(Color)
-    .setTitle("Loop Status")
-    .setDescription(`🎶 Loop Status - ${Queue.Loop ? "On" : "Off"}`)
-    .setTimestamp();
-    
-    if (!args[0]) return message.channel.send(Embed);
-    
-    const Settings = ["on", "off"];
-    
-    if (!Settings.find(Set => Set === args[0].toLowerCase())) return message.channel.send("Invalid Option Provided - On , Off");
-    
-    const Status = Queue.Loop ? "on" : "off";
-    
-    args[0] = args[0].toLowerCase();
-    
-    if (args[0] === Status) return message.channel.send(`Already ${Queue.Loop ? "On" : "Off"}`);
-    
-    const Embeded = new Discord.MessageEmbed()
-    .setColor(Color)
     .setTitle("Success")
+    .setDescription(`🎶 Loop Has Been ${Queue.Loop ? "Enabled" : "Disabled"}!`)
     .setTimestamp();
     
-    if (args[0] === "on") {
-      Queue.Loop = true;
-      Embeded.setDescription("🎶 Loop Has Been Enabled!")
-      return message.channel.send(Embeded).catch(() => message.channel.send("Loop Has Been Enabled!"))
-    } else {
-      Queue.Loop = false;
-      Embeded.setDescription("🎶 Loop Has Been Disabled!");
-      return message.channel.send(Embeded).catch(() => message.channel.send("Loop Has Been Disabled!"));
-    };
+    Queue.Loop = Queue.Loop ? false : true;
+    
+    return message.channel.send(Embed).catch(() => message.channel.send(`🎶 Loop Has Been ${Queue.Loop ? "Enabled" : "Disabled"}!`));
+    
   }
 };

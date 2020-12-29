@@ -1,6 +1,6 @@
 const { Default_Prefix, Color } = require("../../config.js");
 const { GetRegxp, Linker, Objector, Player } = require("../../Functions.js");
-const Discord = require("discord.js"), Sr = require("youtube-sr"), syt = require("scrape-yt"), Ytdl = require("discord-ytdl-core"), db = require("wio.db");
+const Discord = require("discord.js"), Sr = require("youtube-sr"), syt = require("scrape-yt"), pl = require("ytpl"), Ytdl = require("discord-ytdl-core"), db = require("wio.db");
 
 module.exports = {
   name: "play",
@@ -14,17 +14,10 @@ module.exports = {
       return message.channel.send("Please Join A Voice Channel To Play Music!");
     if (!args[0])
       return message.channel.send(
-        "Please Give Any Of The Following :\nYoutube Video (Link - ID) , Youtube Playlist (Link - ID) , Query"
-      );
-    if (
-      !Channel.permissionsFor(message.guild.me).has("CONNECT") ||
-      !Channel.permissionsFor(message.guild.me).has("SPEAK")
-    )
-      return message.channel.send(
-        "I Don't Have Enough Permissions To Play Music - Connect , Speak"
+        "Please Give Any Of The Following :\nYoutube Video (Link - ID) , Youtube Playlist (Link - ID) (Songs Limit: 50) , Query"
       );
     
-    if (!Channel.joinable) return message.channel.send("I Can't Join The Voice Channel!");
+    if (!Channel.joinable || !Channel.speakable) return message.channel.send("I Can't Join, Speak (In) The Voice Channel!");
 
     const YtID = await GetRegxp("YtID"),
       YtUrl = await GetRegxp("YtUrl"),
@@ -41,6 +34,7 @@ module.exports = {
         const Link = await Linker(args[0]);
         const Info = await Ytdl.getInfo(Link);
         SongInfo = Info.videoDetails;
+        if (SongInfo.isLiveContent) return message.channel.send("Error: Live Videos Are Not Supported!");
         Song = await Objector(SongInfo, message);
       } catch (error) {
         console.log(error);
@@ -62,14 +56,16 @@ module.exports = {
       !args[0].toLowerCase().startsWith("http")
     ) {
       try {
-        const Info = await syt.getPlaylist(args[0]);
+        const Info = await pl(args[0]);
+        if (Info.items.length < 1 || Info.items.length > 50) return message.channel.send("Error: No Song | Songs Limit: 50")
         const YtInfo = await Ytdl.getInfo(
-          `https://www.youtube.com/watch?v=${Info.videos[0].id}`
+          `https://www.youtube.com/watch?v=${Info.items[0].id}`
         );
         SongInfo = YtInfo.videoDetails;
+        if (SongInfo.isLiveContent) return message.channel.send("Error: Live Videos Are Not Supported!");
         Song = await Objector(SongInfo, message);
         const Arr = [];
-        for (const Video of Info.videos) {
+        for (const Video of Info.items) {
           const Infor = await Ytdl.getInfo(
             `https://www.youtube.com/watch?v=${Video.id}`
           );
@@ -78,28 +74,28 @@ module.exports = {
         }
         Playlist = {
           Yes: true,
-          Data: Arr
+          Data: Arr,
+          More: Info
         };
       } catch (error) {
         console.log(error);
         return message.channel.send(
-          "Error: Something Went Wrong Or No Playlist Found Or Playlist Videos Are Private Or No Videos (ID)!"
+          "Error: Something Went Wrong Or No Playlist Found Or Playlist Has 50+ Songs Or Playlist Videos Are Private Or No Videos (ID)!"
         );
       }
     } else if (YtPlUrl.test(args[0])) {
       try {
-        const Splitter = await args[0].split("list=")[1];
-        console.log(Splitter);
-        const Info = await syt.getPlaylist(
-          Splitter.endsWith("/") ? Splitter.slice(0, -1) : Splitter
-        );
+        const ID = await pl.getPlaylistID(args[0]);
+        const Info = await pl(ID);
+        if (Info.items.length < 1 || Info.items.length > 50) return message.channel.send("Error: No Song | Songs Limit: 50");
         const YtInfo = await Ytdl.getInfo(
-          `https://www.youtube.com/watch?v=${Info.videos[0].id}`
+          `https://www.youtube.com/watch?v=${Info.items[0].id}`
         );
         SongInfo = YtInfo.videoDetails;
+        if (SongInfo.isLiveContent) return message.channel.send("Error: Live Videos Are Not Supported!");
         Song = await Objector(SongInfo, message);
         const Arr = [];
-        for (const Video of Info.videos) {
+        for (const Video of Info.items) {
           const Infor = await Ytdl.getInfo(
             `https://www.youtube.com/watch?v=${Video.id}`
           );
@@ -108,12 +104,13 @@ module.exports = {
         }
         Playlist = {
           Yes: true,
-          Data: Arr
+          Data: Arr,
+          More: Info
         };
       } catch (error) {
         console.log(error);
         return message.channel.send(
-          "Error: Something Went Wrong Or No Playlist Found Or Playlist Videos Are Private Or No Videos (Url)!"
+          "Error: Something Went Wrong Or No Playlist Found Or Playlist Has 50+ Songs Or Invalid Playlist Or Playlist Videos Are Private Or No Videos (ID)!"
         );
       }
     } else {
@@ -121,6 +118,7 @@ module.exports = {
         await Sr.searchOne(args.join(" ")).then(async Info => {
            const YtInfo = await Ytdl.getInfo(`https://www.youtube.com/watch?v=${Info.id}`);
           SongInfo = YtInfo.videoDetails;
+          if (SongInfo.isLiveContent) return message.channel.send("Error: Live Videos Are Not Supported!");
           Song = await Objector(SongInfo, message);
         });
       } catch (error) {
@@ -144,13 +142,9 @@ module.exports = {
         const Embed = new Discord.MessageEmbed()
           .setColor(Color)
           .setTitle("Playlist Added!")
-          .setThumbnail(Playlist.Data[0].Thumbnail)
+          .setThumbnail(Playlist.More.bestThumbnail.url)
           .setDescription(
-            `[Playlist](${
-              args[0].includes("http")
-                ? args[0]
-                : `https://www.youtube.com/playlist?list=${args[0]}`
-            }) Has Been Added To Queue!`
+            `[${Playlist.More.title}](${Playlist.More.url}) (${Playlist.More.estimatedItemCount === 100 ? "100 (Limit)" : Playlist.More.estimatedItemCount}) Has Been Added To Queue!`
           )
           .setTimestamp();
         await Playlist.Data.forEach(async Video => {
