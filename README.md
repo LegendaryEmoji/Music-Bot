@@ -33,7 +33,7 @@ By Donating, You Will Help Me To Maintain This Bot!
 
 ### Other
 
-Note: Please Make Sure You Know Basics & Also Credit Me Or I Will Report You :)
+Note: Please Make Sure You Know Basics Or I Will Report You :)
 
 - Author - Legendary Emoji#1742
 - Support - [Click Me](https://discord.gg/umMpnqS)
