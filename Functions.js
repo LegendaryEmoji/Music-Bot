@@ -40,7 +40,9 @@ module.exports = {
     };
 
     if (!options.Play) {
-      await Db.VoiceChannel.leave() && await client.queue.delete(message.guild.id);
+      if (!Db.FullDay) Db.FullDay = false;
+      if (Db.FullDay && Db.FullDay == false) await Db.VoiceChannel.leave();
+      await client.queue.delete(message.guild.id);
       const Embeded = new Discord.MessageEmbed()
         .setColor(options.Color)
         .setTitle("Queue Ended!")
@@ -55,7 +57,7 @@ module.exports = {
             "Server Queue Has Been Ended, Thanks For Listening To Me <3"
           )
         );
-    };
+    }
 
     Db.Bot.on("disconnect", async () => {
       await client.queue.delete(message.guild.id);
@@ -65,14 +67,14 @@ module.exports = {
     Object.keys(Db.Filters).forEach(FilterName => {
       if (Db.Filters[FilterName]) {
         EcoderFilters.push(Filters[FilterName]);
-      };
+      }
     });
     let Encoder;
     if (EcoderFilters.length < 1) {
       Encoder = [];
     } else {
       Encoder = ["-af", EcoderFilters.join(",")];
-    };
+    }
 
     const Steam = Ytdl(Db.Songs[0].Link, {
       filter: "audioonly",
@@ -83,7 +85,6 @@ module.exports = {
       highWaterMark: 1 << 30
     });
 
-    setTimeout(async () => {
       if (Db.Steam) Db.Steam.destroy();
       Db.Steam = Steam;
 
@@ -93,7 +94,7 @@ module.exports = {
       });
 
       if (Seek) {
-      Db.ExtraTime = Seek;
+        Db.ExtraTime = Seek;
       } else {
         const PlayEmbed = new Discord.MessageEmbed()
           .setColor(options.Color)
@@ -127,7 +128,6 @@ module.exports = {
             "Error: Something Went Wrong From Bot Inside"
           );
         });
-    }, 1000);
   },
   async Objector(Song, message) {
     function FD(duration) {
@@ -170,7 +170,7 @@ module.exports = {
       } else {
         return Count;
       }
-    };
+    }
     return {
       ID: Song.videoId,
       Title: Song.title,
