@@ -20,12 +20,12 @@ module.exports = {
     const Embed = new Discord.MessageEmbed()
     .setColor(Color)
     .setTitle("Success")
-    .setDescription(`🎶 Loop Has Been ${Queue.Loop ? "Enabled" : "Disabled"}!`)
+    .setDescription(`🎶 Loop Has Been ${Queue.Loop ? "Disabled" : "Enabled"}!`)
     .setTimestamp();
     
     Queue.Loop = Queue.Loop ? false : true;
     
-    return message.channel.send(Embed).catch(() => message.channel.send(`🎶 Loop Has Been ${Queue.Loop ? "Enabled" : "Disabled"}!`));
+    return message.channel.send(Embed).catch(() => message.channel.send(`🎶 Loop Has Been ${Queue.Loop ? "Disabled" : "Enabled"}!`));
     
   }
 };
