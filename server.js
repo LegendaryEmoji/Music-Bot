@@ -35,12 +35,14 @@ modules.forEach(function(module) {
 
 client.on("message", async message => {
   if (message.author.bot || !message.guild || message.webhookID) return;
+  
+  if (!Default_Prefix || !Token) throw new Error(`Missing Data (Config.js)!\nDefault Prefix , Token`);
 
   let Prefix = await db.fetch(`Prefix_${message.guild.id}`);
   if (!Prefix) Prefix = Default_Prefix;
 
   if (!message.content.startsWith(Prefix)) return;
-
+  
   let args = message.content
     .slice(Prefix.length)
     .trim()
@@ -66,4 +68,4 @@ client.on("message", async message => {
   };
 });
 
-client.login(Token).catch(() => console.log(`Invalid Token Is Provided - Please Give Valid Token!`));
+client.login(Token).catch(() => console.log(new Error(`Invalid Token Is Provided - Please Give Valid Token!`)));
