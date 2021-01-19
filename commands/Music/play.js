@@ -1,6 +1,6 @@
 const { Default_Prefix, Color } = require("../../config.js");
 const { GetRegxp, Linker, Objector, Player } = require("../../Functions.js");
-const Discord = require("discord.js"), Sr = require("youtube-sr"), syt = require("scrape-yt"), pl = require("ytpl"), Ytdl = require("discord-ytdl-core"), db = require("wio.db");
+const Discord = require("discord.js"), Sr = require("youtube-sr").default, syt = require("scrape-yt"), pl = require("ytpl"), Ytdl = require("discord-ytdl-core"), db = require("wio.db");
 
 module.exports = {
   name: "play",
@@ -31,8 +31,7 @@ module.exports = {
 
     if (YtID.test(args[0])) {
       try {
-        const Link = await Linker(args[0]);
-        const Info = await Ytdl.getInfo(Link);
+        const Link = await Linker(args[0]), Info = await Ytdl.getInfo(Link);
         SongInfo = Info.videoDetails;
         if (SongInfo.isLiveContent) return message.channel.send("Error: Live Videos Are Not Supported!");
         Song = await Objector(SongInfo, message);
@@ -44,6 +43,7 @@ module.exports = {
       try {
         const Info = await Ytdl.getInfo(args[0]);
         SongInfo = Info.videoDetails;
+        if (SongInfo.isLiveContent) return message.channel.send("Error: Live Videos Are Not Supported!");
         Song = await Objector(SongInfo, message);
       } catch (error) {
         console.log(error);
@@ -85,8 +85,7 @@ module.exports = {
       }
     } else if (YtPlUrl.test(args[0])) {
       try {
-        const ID = await pl.getPlaylistID(args[0]);
-        const Info = await pl(ID);
+        const ID = await pl.getPlaylistID(args[0]), Info = await pl(ID);
         if (Info.items.length < 1 || Info.items.length > 50) return message.channel.send("Error: No Song | Songs Limit: 50");
         const YtInfo = await Ytdl.getInfo(
           `https://www.youtube.com/watch?v=${Info.items[0].id}`
@@ -116,7 +115,7 @@ module.exports = {
     } else {
       try {
         await Sr.searchOne(args.join(" ")).then(async Info => {
-           const YtInfo = await Ytdl.getInfo(`https://www.youtube.com/watch?v=${Info.id}`);
+          const YtInfo = await Ytdl.getInfo(`https://www.youtube.com/watch?v=${Info.id}`);
           SongInfo = YtInfo.videoDetails;
           if (SongInfo.isLiveContent) return message.channel.send("Error: Live Videos Are Not Supported!");
           Song = await Objector(SongInfo, message);
@@ -132,6 +131,7 @@ module.exports = {
     let Joined;
     try {
       Joined = await Channel.join();
+      await Joined.voice.setSelfDeaf(true);
     } catch (error) {
       console.log(error);
       return message.channel.send("Error: I Can't Join The Voice Channel!");

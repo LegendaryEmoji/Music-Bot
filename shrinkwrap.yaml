@@ -5,12 +5,12 @@ dependencies:
   express: 4.17.1
   ffmpeg-static: 4.2.7
   fs: 0.0.2
-  lyrics-finder: 21.4.0
+  lyrics-finder: 21.7.0
   scrape-yt: 1.4.7
-  wio.db: 4.0.9
-  youtube-sr: 2.0.5
-  ytdl-core: 4.1.6
-  ytpl: 2.0.3
+  wio.db: 4.0.10
+  youtube-sr: 3.0.0
+  ytdl-core: 4.4.3
+  ytpl: 2.0.4
 packages:
   /@derhuerst/http-basic/8.2.1:
     dependencies:
@@ -31,7 +31,7 @@ packages:
     dependencies:
       asynckit: 0.4.0
       combined-stream: 1.0.8
-      mime-types: 2.1.27
+      mime-types: 2.1.28
     dev: false
     engines:
       node: '>= 6'
@@ -65,20 +65,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-PGaJNs5IZz5XgzwJvL/1zRfZB7iaJ5BydZ8/Picm+lUNYoNO9iVTQkVy5eUh0dZDrx3rBOIs3GCbCRmMuYyqwg==
-  /@types/node/14.14.11:
-    dev: false
-    resolution:
-      integrity: sha512-BJ97wAUuU3NUiUCp44xzUFquQEvnk1wu7q4CMEUYKJWjdkr0YWYDsm4RFtAvxYsNjLsKcrFt6RvK8r+mnzMbEQ==
   /@types/node/14.14.12:
     dev: false
     resolution:
       integrity: sha512-ASH8OPHMNlkdjrEdmoILmzFfsJICvhBsFfAum4aKZ/9U4B6M6tTmTPh+f3ttWdD74CEGV5XvXWkbyfSdXaTd7g==
-  /@types/ws/7.4.0:
-    dependencies:
-      '@types/node': 14.14.11
-    dev: false
-    resolution:
-      integrity: sha512-Y29uQ3Uy+58bZrFLhX36hcI3Np37nqWE7ky5tjiDoy1GDZnIwVxS0CgF+s+1bXMzjKBFy+fqaRfb708iNzdinw==
   /abbrev/1.1.1:
     dev: false
     resolution:
@@ -358,7 +348,7 @@ packages:
       prism-media: 1.2.3
       setimmediate: 1.0.5
       tweetnacl: 1.0.3
-      ws: 7.4.1
+      ws: 7.4.2
     dev: false
     engines:
       node: '>=12.0.0'
@@ -539,10 +529,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
-  /fs/0.0.1-security:
-    dev: false
-    resolution:
-      integrity: sha1-invTcYa23d84E/I4WLV+yq9eQdQ=
   /fs/0.0.2:
     dev: false
     resolution:
@@ -725,7 +711,7 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
-  /lyrics-finder/21.4.0:
+  /lyrics-finder/21.7.0:
     dependencies:
       encoding: 0.1.13
       html-to-text: 5.1.1
@@ -733,7 +719,7 @@ packages:
     dev: false
     hasBin: true
     resolution:
-      integrity: sha512-S9vTKX8CSPjZwAaCQ+UVkzrM6pHdAZgp+0SpWSVqtYcHWF2qoLp3CnzHNlSdIBxP97Oh2uRuVGbbfTqtbtRBLQ==
+      integrity: sha512-AMaJ+MdbdemYOWM1Kxd/vzn23OD66/fdemaJWN9dU0qsxK6d09rODSphygAvaGka6mgfHaFlHN+ETHv/d60ftw==
   /m3u8stream/0.8.3:
     dependencies:
       miniget: 4.1.0
@@ -765,12 +751,12 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-UbfJCR4UAVRNgMpfImz05smAXK7+c+ZntjaA26ANtkXLlOe947Aag5zdIcKQULAiF9Cq4WxBi9jUs5zkA84bYQ==
-  /mime-db/1.44.0:
+  /mime-db/1.45.0:
     dev: false
     engines:
       node: '>= 0.6'
     resolution:
-      integrity: sha512-/NOTfLrsPBVeH7YtFPgsVWveuL+4SjjYxaQ1xtM1KMFj7HdxlBlxeyNLzhyJVx7r4rZGJAZ/6lkKCitSc/Nmpg==
+      integrity: sha512-CkqLUxUk15hofLoLyljJSrukZi8mAtgd+yE5uO4tqRZsdsAJKv0O+rFMhVDRJgozy+yG6md5KwuXhD4ocIoP+w==
   /mime-types/2.1.25:
     dependencies:
       mime-db: 1.42.0
@@ -779,14 +765,14 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-5KhStqB5xpTAeGqKBAMgwaYMnQik7teQN4IAzC7npDv6kzeU6prfkR67bc87J1kWMPGkoaZSq1npmexMgkmEVg==
-  /mime-types/2.1.27:
+  /mime-types/2.1.28:
     dependencies:
-      mime-db: 1.44.0
+      mime-db: 1.45.0
     dev: false
     engines:
       node: '>= 0.6'
     resolution:
-      integrity: sha512-JIhqnCasI9yD+SsmkquHBxTSEuZdQX5BuQnS2Vc7puQQQ+8yiP5AY5uWhpdv4YL4VM5c6iliiYWPgJ/nJQLp7w==
+      integrity: sha512-0TO2yJ5YHYr7M2zzT7gDU1tbwHxEUWBCLt0lscSNpcdAfFyJOVEpRYNS7EXVcTLNj/25QO8gulHC5JtTzSE2UQ==
   /mime/1.6.0:
     dev: false
     engines:
@@ -1288,18 +1274,15 @@ packages:
     dev: false
     resolution:
       integrity: sha512-QGkOQc8XL6Bt5PwnsExKBPuMKBxnGxWWW3fU55Xt4feHozMUhdUMaBCk290qpm/wG5u/RSKzwdAC4i51YigihA==
-  /wio.db/4.0.9:
-    dependencies:
-      '@types/ws': 7.4.0
-      fs: 0.0.1-security
+  /wio.db/4.0.10:
     dev: false
     resolution:
-      integrity: sha512-/2PR05HGY9Qs8Dn5+KfWIbP7v+1CrZ8WfN5tyNRUwOtcxg7y7lkC7Hom85tNwsoIcxO6efuOgfurmyxosHHwRA==
+      integrity: sha512-2oiSZyfmNnG1UYrXEjxDl1W6O0webPsHuF6N7emkjnSxoqdHhagWo1H9+g2p3DHy9fSmiq0B7qL7Z4niw078wA==
   /wrappy/1.0.2:
     dev: false
     resolution:
       integrity: sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
-  /ws/7.4.1:
+  /ws/7.4.2:
     dev: false
     engines:
       node: '>=8.3.0'
@@ -1307,18 +1290,18 @@ packages:
       bufferutil: ^4.0.1
       utf-8-validate: ^5.0.2
     resolution:
-      integrity: sha512-pTsP8UAfhy3sk1lSk/O/s4tjD0CRwvMnzvwr4OKGX7ZvqZtUyx4KIJB5JWbkykPoc55tixMGgTNoh3k4FkNGFQ==
+      integrity: sha512-T4tewALS3+qsrpGI/8dqNMLIVdq/g/85U98HPMa6F0m6xTbvhXU6RCQLqPH3+SlomNV/LdY6RXEbBpMH6EOJnA==
   /yallist/4.0.0:
     dev: false
     resolution:
       integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==
-  /youtube-sr/2.0.5:
+  /youtube-sr/3.0.0:
     dependencies:
       node-fetch: 2.6.1
     dev: false
     resolution:
-      integrity: sha512-46aBX3ZCPa9zgZz1HsoeyZnFbBSUmwPYjxZuwcKRGDPCzaj9StBa6UUSnPAr39NTqULbeHGAkMpMRInL4x2+Rg==
-  /ytdl-core/4.1.6:
+      integrity: sha512-ie3uCR2Ew/BWvMZ2MyQal+fQcgAlFq0E2wOrkdWqFYXiGVndwEjNNVZEjRmjpibOJam8l6B5nmp8ndfkGyGfCA==
+  /ytdl-core/4.4.3:
     dependencies:
       m3u8stream: 0.8.3
       miniget: 4.1.0
@@ -1327,28 +1310,28 @@ packages:
     engines:
       node: '>=10'
     resolution:
-      integrity: sha512-byQCynwQeqzn0VkzASFWs41sxnGSHgAXC4Dm6r7woK3e/WNtTr0sfOIgLkRKXaTw3ez5Pq5VhGwFQtbY6YbxRA==
-  /ytpl/2.0.3:
+      integrity: sha512-0GexY2dMk0pvIE0UAB5GPiyaNjiawqDi5eUCUHW7CP1ZNyEco8Lct8/3AsI6aO0EQLGK774ocDvWxOE7W0qrTg==
+  /ytpl/2.0.4:
     dependencies:
       miniget: 4.1.0
     dev: false
     engines:
       node: '>=8'
     resolution:
-      integrity: sha512-E5nH0gULzpXAh7rcj6X7I8MK0L8hiprzZzsxTc/OPZDcYF53Z7O5IbU1vgMYzEmVsPtTLEWejT2HUWdjlgaCSQ==
+      integrity: sha512-lXm3LvFvs2RixD6PTDay5jXRhaMSo/Upw7P60/FgQFvNrgSYRwMpR3nB1v3scu84R2XcS6kuENhPD2M4x/920A==
 registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   '@discordjs/opus': ^0.3.2
   discord-ytdl-core: ^5.0.0
-  discord.js: ^12.5.0
+  discord.js: ^12.5.1
   express: ^4.17.1
   ffmpeg-static: ^4.2.7
   fs: ^0.0.2
-  lyrics-finder: ^21.4.0
+  lyrics-finder: ^21.7.0
   scrape-yt: ^1.4.7
-  wio.db: ^4.0.9
-  youtube-sr: ^2.0.5
-  ytdl-core: ^4.1.5
-  ytpl: ^2.0.3
+  wio.db: ^4.0.10
+  youtube-sr: ^3.0.0
+  ytdl-core: ^4.4.3
+  ytpl: ^2.0.4

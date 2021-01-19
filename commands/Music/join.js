@@ -1,6 +1,5 @@
 const { Default_Prefix, Color } = require("../../config.js");
 const Discord = require("discord.js");
-const db = require("wio.db");
 
 module.exports = {
   name: "join",
@@ -16,9 +15,11 @@ module.exports = {
     
     if (!Channel.joinable) return message.channel.send("I Can't Join The Voice Channel!");
     
-    await Channel.join().catch(() => {
+    const Joined = await Channel.join().catch(() => {
       return message.channel.send("Unable To Join The Voice Channel!");
     });
+    
+    await Joined.voice.setSelfDeaf(true, "Privacy");
     
     const Embed = new Discord.MessageEmbed()
     .setColor(Color)
