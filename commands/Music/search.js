@@ -2,7 +2,7 @@ const { Default_Prefix, Color } = require("../../config.js");
 const { Player, Objector } = require("../../Functions.js");
 const Discord = require("discord.js");
 const db = require("wio.db"),
-  Sr = require("youtube-sr"),
+  Sr = require("youtube-sr").default,
   Ytdl = require("discord-ytdl-core");
 
 module.exports = {
@@ -42,15 +42,21 @@ module.exports = {
             }](https://youtube.com/watch?v=${Video.id})**`
         ),
         Filter = m => m.author.id === message.author.id;
-      
+
       const Embed = new Discord.MessageEmbed()
-      .setColor(Color)
-      .setTitle("Please Choose")
-      .setDescription(All)
-      .setFooter("Please Select Betweent 1 - 10, Time: 5 Minutes")
-      .setTimestamp();
-      
-      message.channel.send(Embed).catch(() => message.channel.send(`Please Select Between 1 - 10, Time: 5 Minutes\n\n${All}`))
+        .setColor(Color)
+        .setTitle("Please Choose")
+        .setDescription(All)
+        .setFooter("Please Select Betweent 1 - 10, Time: 5 Minutes")
+        .setTimestamp();
+
+      message.channel
+        .send(Embed)
+        .catch(() =>
+          message.channel.send(
+            `Please Select Between 1 - 10, Time: 5 Minutes\n\n${All}`
+          )
+        );
 
       await message.channel
         .awaitMessages(Filter, { max: 1, time: 300000, errors: ["time"] })
@@ -77,13 +83,14 @@ module.exports = {
             SongInfo = YtInfo.videoDetails;
             Song = await Objector(SongInfo, message);
           } catch (error) {
-            console.log(error)
+            console.log(error);
             return message.channel.send("Error: Something Went Wrong");
           }
 
           let Joined;
           try {
             Joined = await Channel.join();
+            await Joined.voice.setSelfDeaf(true);
           } catch (error) {
             console.log(error);
             return message.channel.send(
@@ -126,10 +133,17 @@ module.exports = {
           await Database.Songs.push(Song);
 
           try {
-            await Player(message, Discord, client, Ytdl, {
-              Play: Database.Songs[0],
-              Color: Color
-            }, db);
+            await Player(
+              message,
+              Discord,
+              client,
+              Ytdl,
+              {
+                Play: Database.Songs[0],
+                Color: Color
+              },
+              db
+            );
           } catch (error) {
             console.log(error);
             await client.queue.delete(message.guild.id);
