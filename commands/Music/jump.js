@@ -4,7 +4,7 @@ const db = require("wio.db");
 
 module.exports = {
   name: "jump",
-  aliases: [skipto],
+  aliases: ["skipto"],
   category: "Music",
   description: "Jump To A Song In The Queue!",
   usage: "jump <Queue_Number>",
@@ -20,7 +20,7 @@ module.exports = {
     
     if (!Queue.Playing) Queue.Playing = true;
 
-    if (!args[0] || isNaN(args[0]) || Number(args[0]) >= queue.tracks.length || Number(args[0]) < 1) return message.channel.send(`Please use queue number between 1 and ${Queue.Songs.length - 1}`);
+    if (!args[0] || isNaN(args[0]) || Number(args[0]) >= Queue.Songs.length || Number(args[0]) < 1) return message.channel.send(`Please use queue number between 1 and ${Queue.Songs.length - 1}`);
 
     if (Queue.Loop) {
       for (let i = 0; i < args[0] - 1; i++) {
