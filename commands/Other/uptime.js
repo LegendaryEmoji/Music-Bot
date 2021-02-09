@@ -9,10 +9,10 @@ module.exports = {
   description: "Show Bot Uptime!",
   usage: "Uptime",
   run: async (client, message, args) => {
-    const Seconds = Math.floor(client.uptime / 1000);
-    const Minutes = Math.floor(Seconds / 60);
-    const Hours = Math.floor(Minutes / 60);
-    const Days = Math.floor(Hours / 24);    
+    let Days = Math.floor(client.uptime / 86400000);
+    let Hours = Math.floor(client.uptime / 3600000) % 24;
+    let Minutes = Math.floor(client.uptime / 60000) % 60;
+    let Seconds = Math.floor(client.uptime / 1000) % 60;   
     const RemoveUseless = (Duration) => {
       return Duration.replace("0 Day\n", "").replace("0 Hour\n", "").replace("0 Minute\n", "");
     };
