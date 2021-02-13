@@ -1,25 +1,32 @@
 {
   "name": "Music-Bot",
   "version": "1.0.0",
-  "description": "A Advanced Music Bot With Filters & Other Cool Stuff 😉",
-  "main": "server.js",
+  "description": "Advanced Music Bot With Many Filters & Play Support (Youtube, Spotify, Etc)",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node index.js"
   },
+  "keywords": [
+    "discordjs",
+    "music-bot",
+    "filters"
+  ],
   "author": "Legendary Emoji#1742",
+  "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1",
+    "@discordjs/opus": "^0.4.0",
+    "@distube/ytdl": "^1.0.7",
     "discord.js": "^12.5.1",
-    "fs": "^0.0.2",
-    "old-wio.db": "^4.0.10",
-    "youtube-sr": "^3.0.0",
-    "discord-ytdl-core": "^5.0.0",
-    "@discordjs/opus": "^0.3.2",
-    "scrape-yt": "^1.4.7",
-    "lyrics-finder": "^21.7.0",
-    "ytdl-core": "^4.4.3",
+    "fbdl-core": "^1.0.2",
     "ffmpeg-static": "^4.2.7",
-    "ytpl": "^2.0.4"
+    "lyrics-finder": "^21.7.0",
+    "node-fetch": "^2.6.1",
+    "old-wio.db": "^4.0.10",
+    "pretty-ms": "^7.0.1",
+    "soundcloud-scraper": "^4.0.3",
+    "spotify-url-info": "^2.2.0",
+    "youtube-sr": "^3.0.0",
+    "ytdl-core": "^4.4.5"
   },
   "engines": {
     "node": "12.x"
@@ -31,11 +38,5 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/LegendaryEmoji/Music-Bot.git"
-  },
-  "license": "MIT",
-  "keywords": [
-    "discordjs",
-    "music-bot",
-    "filters"
-  ]
+  }
 }

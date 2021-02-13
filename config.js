@@ -1,5 +1,8 @@
-exports.Token = ""; //Bot Token - Important
-exports.Owner = ""; //Bot Owner ID - Important
-exports.Default_Prefix = ""; //Bot Default Prefix (Examples: A!, !)- Important
-exports.Color = ""; //Bot All Embeds Color - Use CAPS For Name (Examples: BLUE, RANDOM) - Important
-exports.Support = ``; //Support Server Link - Never Gonna Give You Up (If No Link Provided)
+/* Your Bot Default Prefix For Every Server */
+exports.Default_Prefix = "";
+/* Your Bot All Embeds Color */
+exports.Color = "";
+/* Your Bot Token (Secret) */
+exports.Token = "";
+/* Bot's Owner ID */
+exports.OwnerID = "";
