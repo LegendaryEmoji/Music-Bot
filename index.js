@@ -74,4 +74,6 @@ Client.on("message", async (message) => {
 
 /* Login */
 
-Client.login(Token).catch(() => console.log(new Error("Invalid Discord Bot Token Provided!")));
+Client.login(
+
+ODE1MTE5MTk4MjQ2MjczMDI0.YDnw6Q.tMNLsqrcZgrdYyBUjb02KwXs710).catch(() => console.log(new Error("Invalid Discord Bot Token Provided!")));
