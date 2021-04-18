@@ -1,4 +1,6 @@
-# Information
+# **Currently, Bot Is Under Maintainess & Not Working Properly & Too Many Bugs, So Please Use Other Bots.**
+
+## Information
 
 Advanced Music Bot With Many Filters & Play Support (Youtube, Spotify, Etc)
 
